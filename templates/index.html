@@ -60,15 +60,23 @@
                                      <div class="span2">{% if error %}
                                                 <span class="help">   Please enter a valid URL</span>
                                             {% endif %}
-                                     </div class="span2">
+                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="span5">
                                         <div class="control-group {% if error %}error{% endif %}">
+                                            <label for="url_input" class="form-text text-muted">Type an URL below</label>
                                             <input type="text" name="url"
                                                    placeholder="http://google.com"
                                                    value="{% if url %}{{ url }}{% endif %}"
                                                    id="url_input"
+                                                   class="form-control">
+                                            <br />
+                                            <small id="emailHelp" class="form-text text-muted">If you want your own shortURL type in a shortlink below.</small>
+                                            <input type="text" name="shortOpt"
+                                                   placeholder="Optional 7 character shortlink "
+                                                   value="{% if shortOpt %}{{ shortOpt }}{% endif %}"
+                                                   id="shortLink"
                                                    class="form-control">
 
                                         </div>

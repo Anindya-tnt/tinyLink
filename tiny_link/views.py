@@ -39,7 +39,10 @@ def home(request):
     if request.method == "POST":
         validator = URLValidator()
         try:
+
             url_input = request.POST.get("url", None)
+            shortOpt_input = request.POST.get("shortOpt", None)
+
             if not url_input:
                 url_error = True
             else:
@@ -69,8 +72,11 @@ def home(request):
                         link_db_obj.save()
             except Exception as e:
                 print ('URL does not exist')
-                shortLink = shrink(url_input)
-                shortened_url = request.build_absolute_uri(shortLink)
+                if shortOpt_input and len(shortOpt_input) == 7:
+                    shortLink = shortOpt_input
+                else:
+                    shortLink = shrink(url_input)
+                #shortened_url = request.build_absolute_uri(shortLink)
                 expiry = datetime.datetime.utcnow().replace(tzinfo=utc)
                 link_db_obj = models.Link.objects.filter(shortLink=shortLink)
                 while( link_db_obj ):
@@ -128,7 +134,7 @@ def link(request, id):
     expiry = datetime.datetime.utcnow().replace(tzinfo=utc)
     timediff = expiry - expiry_db
     if timediff.days > 30:
-        msg = 'Long URL has expired since it was created more than 30 days ago'
+        msg = 'Short URL has expired since it was created more than 30 days ago'
         return render(request, "403_forbidden.html", {'msg': msg})
     today_hits = models.HitsDatePoint.objects.filter(day=datetime.date.today(), link=link_db_row)
     if not today_hits:

@@ -132,7 +132,8 @@ INSTALLED_APPS = (
     'tiny_link',
 )
 
-ALLOWED_HOSTS = [ '192.168.1.7' ]
+ALLOWED_HOSTS = [ '127.0.0.1',
+                  'localhost']
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
