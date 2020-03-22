@@ -46,6 +46,9 @@ def home(request):
             if not url_input:
                 url_error = True
             else:
+                if url_input[-1] == '/':
+                    url_input = url_input[:-1]
+                print('Temp URL after stripping of trailing /', url_input)
                 validator(url_input)
         except ValidationError:
             url_error = True
