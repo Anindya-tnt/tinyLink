@@ -3,7 +3,7 @@ Django==2.1.5
 django-ratelimit==2.0.0
 kiwisolver==1.1.0
 matplotlib==2.2.3
-numpy==1.18.2
+numpy==1.22.0
 Pillow==5.2.0
 pybase64==1.0.1
 pyparsing==2.4.6
